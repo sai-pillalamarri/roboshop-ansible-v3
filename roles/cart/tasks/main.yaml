@@ -1,0 +1,22 @@
+- name: app setup
+  import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: nodejs installation setup
+  import_role:
+    name: common
+    tasks_from: nodejs
+    
+- name: set up cart service file
+  import_role:
+    name: common
+    tasks_from: service-file-setup
+  notify: daemon reload
+
+- name: enable and start the service
+  import_role:
+    name: common
+    tasks_from: restart
+
+      

@@ -1,0 +1,26 @@
+  -  name: setup the RabbitMQ repo file
+     copy:
+      src: rabbitmq.repo
+      dest: /etc/yum.repos.d/rabbitmq.repo
+  
+  - name: install rabbitmq server
+    package:
+      name: rabbitmq-server 
+      state: present
+
+  - name: enable and start service
+    service:
+      name: rabbitmq-server
+      enabled: yes
+      state: started
+
+  - name: create user
+    community.rabbitmq.rabbitmq_user:
+      name: "{{ username }}"
+      password: "{{ password }}"
+      permissions:
+       - vhost: /
+         configure_priv: .*
+         read_priv: .*
+         write_priv: .*
+      state: present

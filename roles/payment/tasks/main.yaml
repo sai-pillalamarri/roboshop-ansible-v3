@@ -1,0 +1,25 @@
+- name: app setup
+  import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: python installatin and dependencies
+  import_role:
+    name: common
+    tasks_from: python
+
+- name: configure payment service
+  import_role:
+    name: common
+    tasks_from: service-file-setup
+  notify: daemon reload
+
+- name: enable and start the service
+  import_role:
+    name: common
+    tasks_from: restart
+  
+
+      
+
+

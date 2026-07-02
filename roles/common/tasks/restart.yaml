@@ -1,0 +1,5 @@
+- name: "start and enable {{ component }} service"
+  service:
+    name: "{{ component }}" 
+    state: restarted
+    enabled: yes

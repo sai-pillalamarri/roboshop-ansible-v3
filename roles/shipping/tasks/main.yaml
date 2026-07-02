@@ -1,0 +1,50 @@
+- name: app setup
+  import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: java setup
+  import_role:
+    name: common
+    tasks_from: java
+
+
+- name: configure shipping service
+  import_role:
+    name: common
+    tasks_from: service-file-setup
+  notify: daemon reload
+
+- name: install python dependencies
+  pip:
+    name: PyMySQL
+    executable: pip3.9
+
+- name: install mysql
+  package:
+    name: mysql
+    state: present
+
+- name: load data into mysql database
+  ansible.mysql.mysql_db:
+    state: import
+    name: all
+    target: "{{ item }}"
+    login_user: root
+    login_password: RoboShop@1
+    login_host: "{{ MYSQL_HOST }}"
+  loop:
+  - /app/db/schema.sql
+  - /app/db/app-user.sql 
+  - /app/db/master-data.sql
+
+- name: enable and start the service
+  import_role:
+    name: common
+    tasks_from: restart
+
+  
+
+      
+
+

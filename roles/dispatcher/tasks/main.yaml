@@ -1,0 +1,55 @@
+- name: create system user
+  user:
+    name: roboshop
+    shell: /sbin/nologin
+    home: /app
+    system: true
+    comment: "roboshop system user"
+
+- name: remove the app directory
+  file:
+    path: /app
+    state: absent
+
+- name: remove existing code
+  file:
+    path: /tmp/dispatch.zip
+    state: absent
+
+- name: create app directory
+  file:
+    path: /app
+    state: directory
+
+- name: download the dispatch service code
+  get_url:
+    url: https://roboshop-artifacts.s3.amazonaws.com/dispatch-v3.zip
+    dest: /tmp/dispatch.zip
+
+- name: unzip the dispatch
+  unarchive:
+    src: /tmp/dispatch.zip
+    dest: /app
+    remote_src: yes
+
+- name: goland and dependencies installation
+  import_role:
+    name: common
+    tasks_from: golang
+
+- name: copy dispatch service
+  template:
+    src: dispatch.service.j2
+    dest: /etc/systemd/system/dispatch.service
+  notify: daemon reload
+
+- name: enable and start the service
+  service:
+    name: dispatch
+    state: restarted
+    enabled: yes
+  
+
+  
+
+
