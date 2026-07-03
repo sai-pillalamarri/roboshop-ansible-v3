@@ -3,6 +3,13 @@
     name: mysql-server
     state: present
 
+- name: install python libraries
+  pip:
+    name:
+      - boto3
+      - botocore
+    executable: pip3
+
 - name: enable and start mysql service
   service:
     name: mysqld
