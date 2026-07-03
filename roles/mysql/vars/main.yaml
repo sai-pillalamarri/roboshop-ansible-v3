@@ -1,1 +1,1 @@
-mysql_root_password: "{{lookup('aws_ssm','/roboshop/{{ env }}/mysql_root_password', decrypt=true)}}"
+mysql_root_password: "{{lookup('aws_ssm','/roboshop/{{ env }}/mysql_root_password', decrypt=true, region='us-east-1')}}"
