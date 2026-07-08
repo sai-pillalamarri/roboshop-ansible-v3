@@ -9,3 +9,4 @@ SHIPPING_HOST: shipping.backend-alb-{{ env }}.aslearnings.online
 PAYMENT_HOST: payment.backend-alb-{{ env }}.aslearnings.online
 #DISPATCH_HOST: dispatcher.{{ env }}.aslearnings.online
 #FRONTEND_HOST: roboshop.{{ env }}.aslearnings.online
+app_version: "v3"
