@@ -3,9 +3,9 @@ REDIS_HOST: redis.{{ env }}.aslearnings.online
 MYSQL_HOST: mysql.{{ env }}.aslearnings.online
 RABBITMQ_HOST: rabbitmq.{{ env }}.aslearnings.online
 CATALOGUE_HOST: catalogue.backend-alb-{{ env }}.aslearnings.online
-USER_HOST: user.{{ env }}.aslearnings.online
-CART_HOST: cart.{{ env }}.aslearnings.online
-SHIPPING_HOST: shipping.{{ env }}.aslearnings.online
-PAYMENT_HOST: payment.{{ env }}.aslearnings.online
-DISPATCH_HOST: dispatcher.{{ env }}.aslearnings.online
-FRONTEND_HOST: roboshop.{{ env }}.aslearnings.online
+USER_HOST: user.backend-alb-{{ env }}.aslearnings.online
+CART_HOST: cart.backend-alb-{{ env }}.aslearnings.online
+SHIPPING_HOST: shipping.backend-alb-{{ env }}.aslearnings.online
+PAYMENT_HOST: payment.backend-alb-{{ env }}.aslearnings.online
+#DISPATCH_HOST: dispatcher.{{ env }}.aslearnings.online
+#FRONTEND_HOST: roboshop.{{ env }}.aslearnings.online
